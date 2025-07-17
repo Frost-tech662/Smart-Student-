@@ -6,23 +6,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Smart Student</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .fade-slide {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .fade-slide.loaded {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body class="bg-gradient-to-b from-white to-purple-100 min-h-screen font-sans">
 
   <!-- Navbar -->
-  <header class="flex justify-between items-center p-4 shadow-sm">
+  <header class="flex justify-between items-center p-4 shadow-sm relative">
     <div class="flex items-center gap-2">
-      <span class="text-red-500 text-2xl">🎓</span>
+      <span class="text-red-500 text-2xl" aria-hidden="true">🎓</span>
       <h1 class="text-blue-600 font-bold text-xl">Smart Student</h1>
     </div>
-    <nav>
-      <a href="signup.html" class="text-blue-600 font-semibold mr-4">Sign Up</a>
-      <a href="explore.html" class="text-blue-600 font-semibold">Explore</a>
-    </nav>
+
+    <!-- Hamburger Menu -->
+    <div class="relative">
+      <button id="menu-toggle" class="focus:outline-none">
+        <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      <div id="dropdown-menu" class="hidden absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-md shadow-md z-10">
+        <a href="about.html" class="block px-4 py-2 text-blue-600 hover:bg-blue-50">About Us</a>
+        <a href="contact.html" class="block px-4 py-2 text-blue-600 hover:bg-blue-50">Contact Us</a>
+      </div>
+    </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="text-center px-6 mt-16">
+  <section class="text-center px-6 mt-16 fade-slide">
     <h2 class="text-3xl font-bold text-gray-800 leading-snug">
       Unlock Your <span class="text-blue-600">Academic Potential</span>
     </h2>
@@ -31,14 +51,42 @@
     </p>
 
     <div class="mt-6 flex flex-col sm:flex-row justify-center gap-4">
-      <a href="explore.html" class="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold shadow-md hover:bg-blue-700">
+      <a href="explore.html" class="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold shadow-md hover:bg-blue-700 transition duration-300">
         Explore Resources
       </a>
-      <a href="signup.html" class="border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-blue-50">
+      <a href="signup.html" class="border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 transition duration-300">
         Sign Up Free
+      </a>
+      <a href="login.html" class="border border-gray-300 text-gray-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300">
+        Log In
       </a>
     </div>
   </section>
+
+  <!-- Footer -->
+  <footer class="text-center text-sm text-gray-500 mt-20 pb-4">
+    © 2025 Smart Student. All rights reserved.
+  </footer>
+
+  <!-- Script for animation and menu -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.fade-slide').forEach(el => el.classList.add('loaded'));
+    });
+
+    const toggleBtn = document.getElementById('menu-toggle');
+    const menu = document.getElementById('dropdown-menu');
+
+    toggleBtn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!toggleBtn.contains(e.target) && !menu.contains(e.target)) {
+        menu.classList.add('hidden');
+      }
+    });
+  </script>
 
 </body>
 </html>
