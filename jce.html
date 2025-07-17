@@ -1,0 +1,83 @@
+<!-- Save as jce.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JCE Past Papers - Smart Student</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans">
+
+  <!-- Navbar -->
+  <header class="flex justify-between items-center p-4 shadow-sm bg-white">
+    <div class="flex items-center gap-2">
+      <a href="index.html" class="text-blue-600 font-semibold hover:underline">← Home</a>
+    </div>
+    <h1 class="text-xl font-bold text-gray-700">JCE Past Papers</h1>
+    <div class="relative">
+      <button id="menu-toggle" class="focus:outline-none">
+        <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+      <div id="dropdown-menu" class="hidden absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-md shadow-md z-10">
+        <a href="about.html" class="block px-4 py-2 text-blue-600 hover:bg-blue-50">About Us</a>
+        <a href="contact.html" class="block px-4 py-2 text-blue-600 hover:bg-blue-50">Contact Us</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="p-6 space-y-10 max-w-4xl mx-auto">
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-800 mb-2">English 2022</h2>
+      <div class="aspect-w-16 aspect-h-9 rounded shadow overflow-hidden border">
+        <iframe
+          src="https://docs.google.com/gview?url=https://your-firebase-link-to-english-2022&embedded=true"
+          class="w-full h-[500px]"
+          frameborder="0"
+        ></iframe>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-800 mb-2">Agriculture 2021</h2>
+      <div class="aspect-w-16 aspect-h-9 rounded shadow overflow-hidden border">
+        <iframe
+          src="https://docs.google.com/gview?url=https://your-firebase-link-to-agriculture-2021&embedded=true"
+          class="w-full h-[500px]"
+          frameborder="0"
+        ></iframe>
+      </div>
+    </section>
+
+    <!-- Add more papers here -->
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center text-sm text-gray-500 mt-10 pb-4">
+    © 2025 Smart Student. All rights reserved.
+  </footer>
+
+  <!-- Script -->
+  <script>
+    const toggleBtn = document.getElementById('menu-toggle');
+    const menu = document.getElementById('dropdown-menu');
+    toggleBtn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+    document.addEventListener('click', (e) => {
+      if (!toggleBtn.contains(e.target) && !menu.contains(e.target)) {
+        menu.classList.add('hidden');
+      }
+    });
+
+    // Optional: Disable right-click
+    document.addEventListener('contextmenu', e => e.preventDefault());
+  </script>
+
+</body>
+</html>
