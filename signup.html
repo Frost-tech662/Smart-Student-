@@ -31,7 +31,40 @@
     <p class="text-center mt-4 text-sm text-gray-600">
       Already have an account? <a href="index.html" class="text-blue-600 font-medium">Go back</a>
     </p>
-  </div>
+  </div><!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script><script>
+  // Your Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyDHw1Qo4Yl6ldOuk1p7-AH0w5crbOHpMTg",
+    authDomain: "smart-student-ef31d.firebaseapp.com",
+    projectId: "smart-student-ef31d",
+    storageBucket: "smart-student-ef31d.firebasestorage.app",
+    messagingSenderId: "471973672604",
+    appId: "1:471973672604:web:572fd2f47644a6668c5f59",
+    measurementId: "G-9EXXJH2EG3"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+
+  // Form submission handling
+  const form = document.querySelector('form');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = form.email.value;
+    const password = form.password.value;
+
+    try {
+      await auth.createUserWithEmailAndPassword(email, password);
+      alert("🎉 Account created successfully!");
+      window.location.href = "index.html";
+    } catch (error) {
+      alert("❌ Error: " + error.message);
+    }
+  });
+</script>
 
 </body>
 </html>
