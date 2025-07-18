@@ -110,7 +110,7 @@
       <i class="fas fa-graduation-cap"></i>
       <h1>Smart Student</h1>
     </div>
-    <a href="A-pdfs.html" class="back-btn">
+    <a href="B-msce.html" class="back-btn">
       <i class="fas fa-arrow-left"></i>
       Back to Subjects
     </a>
@@ -131,7 +131,7 @@
 
     const iframe = document.getElementById('pdfFrame');
     if (file) {
-      iframe.src = `file`;
+      iframe.src = file;
     } else {
       document.querySelector('.pdf-viewer').innerHTML = '<div class="error">No PDF file specified!</div>';
     }
