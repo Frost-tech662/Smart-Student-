@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Student</title>
+    <title>About Us | Smart Student</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
@@ -104,53 +104,128 @@
             transform: translateX(-5px);
         }
         
-        /* Main Content */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 80vh;
-            text-align: center;
-            padding: 0 5%;
-            position: relative;
+        /* About Us Content */
+        .about-container {
+            padding: 80px 5%;
+            max-width: 1000px;
+            margin: 0 auto;
         }
         
-        .hero h2 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
+        .about-header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .about-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
             background: linear-gradient(to right, #4a6bff, #a855f7);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            animation: fadeInUp 1s ease-out 0.3s both;
         }
         
-        .hero p {
-            font-size: 1.2rem;
+        .about-header p {
+            font-size: 1.1rem;
             color: #555;
             max-width: 700px;
-            margin-bottom: 30px;
-            animation: fadeInUp 1s ease-out 0.6s both;
+            margin: 0 auto;
         }
         
-        .explore-btn {
-            padding: 15px 40px;
-            background: linear-gradient(to right, #4a6bff, #a855f7);
+        .founder-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+        
+        .founder-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #f0f0f0;
+            margin-bottom: 20px;
+        }
+        
+        .founder-info {
+            text-align: center;
+        }
+        
+        .founder-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .founder-info p {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .mission-section {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease-out 0.6s both;
+        }
+        
+        .mission-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+        
+        .mission-section p {
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .support-section {
+            background: linear-gradient(135deg, #4a6bff 0%, #a855f7 100%);
+            padding: 40px;
+            border-radius: 20px;
             color: white;
+            text-align: center;
+            animation: fadeIn 1s ease-out 0.9s both;
+        }
+        
+        .support-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .support-section p {
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .donate-btn {
+            padding: 12px 30px;
+            background: white;
+            color: #4a6bff;
             border: none;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 10px 20px rgba(74, 107, 255, 0.3);
             transition: all 0.3s ease;
-            animation: fadeInUp 1s ease-out 0.9s both;
         }
         
-        .explore-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(74, 107, 255, 0.4);
+        .donate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
         
         /* Floating elements for animation */
@@ -184,31 +259,6 @@
             top: 60%;
             left: 30%;
             animation-delay: 4s;
-        }
-        
-        /* About Section */
-        .about {
-            padding: 80px 5%;
-            background: white;
-            border-radius: 30px 30px 0 0;
-            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.05);
-            animation: fadeIn 1s ease-out 1.2s both;
-        }
-        
-        .about h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #333;
-            text-align: center;
-        }
-        
-        .about p {
-            font-size: 1.1rem;
-            color: #555;
-            max-width: 800px;
-            margin: 0 auto 20px;
-            line-height: 1.6;
-            text-align: center;
         }
         
         /* Animations */
@@ -278,12 +328,12 @@
         
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h2 {
-                font-size: 2.5rem;
+            .about-header h2 {
+                font-size: 2rem;
             }
             
-            .hero p {
-                font-size: 1rem;
+            .founder-section, .mission-section, .support-section {
+                padding: 30px 20px;
             }
         }
     </style>
@@ -296,7 +346,7 @@
     
     <!-- Header with logo and hamburger menu -->
     <header>
-        <div class="logo" onclick="window.location.href='index.html'">
+       <div class="logo" onclick="window.location.href='index.html'">
     <i class="fas fa-graduation-cap"></i>
     <h1>Smart Student</h1>
 </div>
@@ -305,7 +355,7 @@
             <i class="fas fa-bars"></i>
         </div>
         
-       <div class="menu" id="menu">
+        <div class="menu" id="menu">
     <a href="index.html">Home</a>
     <a href="About.html">About Us</a>
     <a href="A-pdfs.html">PDF Resources</a>
@@ -314,19 +364,37 @@
 </div>
     </header>
     
-    <!-- Main Hero Section -->
-    <section class="hero">
-        <h2>Unlock Your Academic Potential</h2>
-        <p>Access premium study materials, curated resources, and smart tools designed to help you excel in your studies.</p>
-        <button class="explore-btn" onclick="window.location.href='A-pdfs.html'">Explore Resources</button>
-    </section>
-    
-    <!-- About Section -->
-    <section class="about" id="about">
-        <h3>About Smart Student</h3>
-        <p>Smart Student is an innovative platform dedicated to helping students achieve academic excellence. We provide carefully selected educational resources, study materials, and learning tools to make your study sessions more effective and efficient.</p>
-        <p>Our mission is to empower students with the right resources and knowledge to succeed in their academic journey. Whether you're preparing for exams, working on projects, or just looking to expand your knowledge, Smart Student is here to support you.</p>
-    </section>
+    <!-- About Us Content -->
+    <main class="about-container">
+        <div class="about-header">
+            <h2>About Smart Student</h2>
+            <p>Learn about the story behind our platform and how we're helping students succeed</p>
+        </div>
+        
+        <section class="founder-section">
+            <!-- Replace with your actual image -->
+            <img src="your-profile-image.jpg" alt="Rodwell" class="founder-img" onerror="this.src='https://ui-avatars.com/api/?name=Rodwell&background=4a6bff&color=fff&size=150'">
+            <div class="founder-info">
+                <h3>Rodwell</h3>
+                <p>Student & Founder</p>
+                <p>Hello! I'm Rodwell, a student just like you who built Smart Student to help fellow learners. As someone who understands the challenges of academic life, I created this platform to share valuable resources that make studying more effective and less stressful.</p>
+                <p>What started as a personal project to organize my own study materials has grown into a platform that now helps students everywhere. I'm constantly working to improve and expand the resources available here.</p>
+            </div>
+        </section>
+        
+        <section class="mission-section">
+            <h3>Our Mission</h3>
+            <p>Smart Student was born from a simple idea: students helping students. Our mission is to create a community-driven platform where learners can access high-quality study materials, share knowledge, and support each other's academic journeys.</p>
+            <p>We believe that education should be accessible to everyone, and that's why we're committed to providing free resources while continuously expanding our offerings to meet student needs.</p>
+        </section>
+        
+        <section class="support-section">
+            <h3>Support Our Growth</h3>
+            <p>As a one-person operation, your support means everything. Donations help cover server costs, develop new features, and create more study resources for students worldwide.</p>
+            <p>If you find value in Smart Student and would like to contribute to its development, please consider making a donation. Every little bit helps!</p>
+            <button class="donate-btn" onclick="window.location.href='donate.html'">Support Smart Student</button>
+        </section>
+    </main>
     
     <script>
         // Hamburger menu functionality
@@ -346,11 +414,6 @@
         // Prevent menu from closing when clicking inside it
         menu.addEventListener('click', (e) => {
             e.stopPropagation();
-        });
-        
-        // Animation on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            // Additional animations can be added here
         });
     </script>
 </body>
