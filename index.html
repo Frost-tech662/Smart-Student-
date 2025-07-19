@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Smart Student</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
-        
+
         body {
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
             overflow-x: hidden;
         }
-        
+
         /* Header Styles */
         header {
             display: flex;
@@ -31,20 +31,20 @@
             z-index: 100;
             animation: fadeInDown 1s ease-out;
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
             cursor: pointer;
         }
-        
+
         .logo i {
             font-size: 2.5rem;
             color: #4a6bff;
             margin-right: 10px;
             animation: bounce 2s infinite;
         }
-        
+
         .logo h1 {
             font-size: 1.8rem;
             font-weight: 700;
@@ -54,7 +54,7 @@
             color: transparent;
             animation: colorShift 5s infinite alternate;
         }
-        
+
         /* Hamburger Menu */
         .menu-btn {
             font-size: 1.8rem;
@@ -63,11 +63,11 @@
             transition: transform 0.3s ease;
             z-index: 1000;
         }
-        
+
         .menu-btn:hover {
             transform: rotate(90deg);
         }
-        
+
         .menu {
             position: fixed;
             top: 0;
@@ -83,11 +83,11 @@
             transition: right 0.4s ease;
             z-index: 999;
         }
-        
+
         .menu.active {
             right: 0;
         }
-        
+
         .menu a {
             padding: 15px;
             margin: 10px 0;
@@ -97,14 +97,14 @@
             border-radius: 8px;
             transition: all 0.3s ease;
         }
-        
+
         .menu a:hover {
             background: #4a6bff;
             color: white;
             transform: translateX(-5px);
         }
-        
-        /* Main Content */
+
+        /* Main Hero Section */
         .hero {
             display: flex;
             flex-direction: column;
@@ -115,7 +115,7 @@
             padding: 0 5%;
             position: relative;
         }
-        
+
         .hero h2 {
             font-size: 3.5rem;
             margin-bottom: 20px;
@@ -125,7 +125,7 @@
             color: transparent;
             animation: fadeInUp 1s ease-out 0.3s both;
         }
-        
+
         .hero p {
             font-size: 1.2rem;
             color: #555;
@@ -133,7 +133,7 @@
             margin-bottom: 30px;
             animation: fadeInUp 1s ease-out 0.6s both;
         }
-        
+
         .explore-btn {
             padding: 15px 40px;
             background: linear-gradient(to right, #4a6bff, #a855f7);
@@ -147,13 +147,13 @@
             transition: all 0.3s ease;
             animation: fadeInUp 1s ease-out 0.9s both;
         }
-        
+
         .explore-btn:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(74, 107, 255, 0.4);
         }
-        
-        /* Floating elements for animation */
+
+        /* Floating elements */
         .floating {
             position: absolute;
             border-radius: 50%;
@@ -161,7 +161,7 @@
             animation: float 6s ease-in-out infinite;
             z-index: -1;
         }
-        
+
         .floating:nth-child(1) {
             width: 150px;
             height: 150px;
@@ -169,7 +169,7 @@
             left: 10%;
             animation-delay: 0s;
         }
-        
+
         .floating:nth-child(2) {
             width: 200px;
             height: 200px;
@@ -177,7 +177,7 @@
             right: 10%;
             animation-delay: 2s;
         }
-        
+
         .floating:nth-child(3) {
             width: 100px;
             height: 100px;
@@ -185,173 +185,413 @@
             left: 30%;
             animation-delay: 4s;
         }
-        
-        /* About Section */
-        .about {
-            padding: 80px 5%;
-            background: white;
+
+        /* Founder Section */
+        .founder-section {
+            padding: 100px 5%;
+            background: linear-gradient(to bottom, #ffffff, #e3e9f7);
             border-radius: 30px 30px 0 0;
             box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.05);
-            animation: fadeIn 1s ease-out 1.2s both;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .about h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
+
+        .founder-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="%234a6bff22" d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"></path></svg>');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        .founder-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .founder-section h3 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
             color: #333;
             text-align: center;
+            background: linear-gradient(to right, #4a6bff, #a855f7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-        
-        .about p {
+
+        .founder-section p {
             font-size: 1.1rem;
             color: #555;
             max-width: 800px;
-            margin: 0 auto 20px;
-            line-height: 1.6;
+            margin: 0 auto 30px;
+            line-height: 1.8;
             text-align: center;
         }
-        
+
+        .founder-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px auto;
+            max-width: 700px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .founder-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #4a6bff, #a855f7);
+        }
+
+        .founder-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(74, 107, 255, 0.2);
+            margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .founder-image:hover {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 15px 30px rgba(74, 107, 255, 0.3);
+        }
+
+        .founder-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #4a6bff;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .founder-title {
+            font-size: 1.1rem;
+            color: #777;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .founder-bio {
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .vision-mission {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .vision, .mission {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vision::before, .mission::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, #4a6bff, #a855f7);
+        }
+
+        .vision h4, .mission h4 {
+            font-size: 1.5rem;
+            color: #4a6bff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .vision h4 i, .mission h4 i {
+            margin-right: 10px;
+        }
+
+        .vision p, .mission p {
+            text-align: left;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        .fade-in.show {
+            opacity: 1;
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .slide-in-left.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(100px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .slide-in-right.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .scale-in.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Scroll to Top Button */
+        #scrollTopBtn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            font-size: 1.5rem;
+            background: linear-gradient(to right, #4a6bff, #a855f7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 15px 18px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(74, 107, 255, 0.3);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease, transform 0.3s ease;
+        }
+
+        #scrollTopBtn.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #scrollTopBtn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(74, 107, 255, 0.4);
+        }
+
         /* Animations */
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
+
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(5deg);
-            }
-            100% {
-                transform: translateY(0) rotate(0deg);
-            }
-        }
-        
+
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-20px);
-            }
-            60% {
-                transform: translateY(-10px);
-            }
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
         }
-        
+
         @keyframes colorShift {
-            0% {
-                filter: hue-rotate(0deg);
-            }
-            100% {
-                filter: hue-rotate(20deg);
-            }
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(20deg); }
         }
-        
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h2 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
+            .hero h2 { font-size: 2.5rem; }
+            .hero p { font-size: 1rem; }
+            .founder-section h3 { font-size: 2rem; }
+            .founder-name { font-size: 1.5rem; }
+            .vision-mission { flex-direction: column; }
+            .vision, .mission { min-width: 100%; }
         }
     </style>
 </head>
 <body>
-    <!-- Floating background elements -->
     <div class="floating"></div>
     <div class="floating"></div>
     <div class="floating"></div>
-    
-    <!-- Header with logo and hamburger menu -->
+
     <header>
         <div class="logo" onclick="window.location.href='index.html'">
-    <i class="fas fa-graduation-cap"></i>
-    <h1>Smart Student</h1>
-</div>
-        
+            <i class="fas fa-graduation-cap"></i>
+            <h1>Smart Student</h1>
+        </div>
         <div class="menu-btn" id="menuBtn">
             <i class="fas fa-bars"></i>
         </div>
-        
-       <div class="menu" id="menu">
-    <a href="index.html">Home</a>
-    <a href="About.html">About Us</a>
-    <a href="A-pdfs.html">PDF Resources</a>
-    <a href="B-msce.html">MSCE Materials</a>
-    <a href="C-jce.html">JCE Materials</a>
-</div>
+        <div class="menu" id="menu">
+            <a href="index.html">Home</a>
+            <a href="A-pdfs.html"></a>
+            <a href="B-msce.html">MSCE Papers</a>
+            <a href="C-jce.html">JCE Papers</a>
+        </div>
     </header>
-    
-    <!-- Main Hero Section -->
+
     <section class="hero">
-        <h2>Unlock Your Academic Potential</h2>
-        <p>Access premium study materials, curated resources, and smart tools designed to help you excel in your studies.</p>
+       <h2>Smart Tools for Smart Students</h2>
+<p>Access MSCE and JCE past papers and reliable study tools tailored for secondary school students across MALAWI.</p>
         <button class="explore-btn" onclick="window.location.href='A-pdfs.html'">Explore Resources</button>
     </section>
-    
-    <!-- About Section -->
-    <section class="about" id="about">
-        <h3>About Smart Student</h3>
-        <p>Smart Student is an innovative platform dedicated to helping students achieve academic excellence. We provide carefully selected educational resources, study materials, and learning tools to make your study sessions more effective and efficient.</p>
-        <p>Our mission is to empower students with the right resources and knowledge to succeed in their academic journey. Whether you're preparing for exams, working on projects, or just looking to expand your knowledge, Smart Student is here to support you.</p>
+
+    <section class="founder-section" id="founder">
+        <div class="founder-content">
+            <h3 class="reveal">Meet The Visionary</h3>
+            <p class="reveal">Behind Smart Student is a passionate Malawian student with a dream to transform education</p>
+            
+            <div class="founder-card scale-in">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Rodwell" class="founder-image fade-in">
+                <h4 class="founder-name">Rodwell</h4>
+                <p class="founder-title">Founder & Student Innovator</p>
+                <p class="founder-bio">A dedicated student from Malawi who recognized the challenges students face in accessing quality educational resources. His personal journey inspired the creation of Smart Student.</p>
+            </div>
+            
+            <div class="vision-mission">
+                <div class="vision slide-in-left">
+                    <h4><i class="fas fa-lightbulb"></i> The Vision</h4>
+                    <p>To create a Malawi where every student, regardless of their background or location, has equal access to high-quality educational resources that empower them to achieve academic excellence.</p>
+                </div>
+                
+                <div class="mission slide-in-right">
+                    <h4><i class="fas fa-bullseye"></i> The Mission</h4>
+                    <p>To provide free, comprehensive, and easily accessible study materials for Malawian students, leveraging technology to bridge educational gaps and foster a culture of collaborative learning.</p>
+                </div>
+            </div>
+            
+            <p class="reveal" style="margin-top: 50px;">Rodwell's innovative approach combines his firsthand understanding of student needs with a commitment to making education accessible to all. Smart Student is more than a platform—it's a movement to democratize education in Malawi.</p>
+        </div>
     </section>
-    
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollTopBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
     <script>
-        // Hamburger menu functionality
+        // Hamburger menu
         const menuBtn = document.getElementById('menuBtn');
         const menu = document.getElementById('menu');
-        
+
         menuBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             menu.classList.toggle('active');
         });
-        
-        // Close menu when clicking anywhere else
+
         document.addEventListener('click', () => {
             menu.classList.remove('active');
         });
-        
-        // Prevent menu from closing when clicking inside it
+
         menu.addEventListener('click', (e) => {
             e.stopPropagation();
         });
-        
-        // Animation on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            // Additional animations can be added here
+
+        // Scroll reveal with different effects
+        const scrollReveal = () => {
+            const elements = document.querySelectorAll('.reveal, .fade-in, .slide-in-left, .slide-in-right, .scale-in');
+            const windowHeight = window.innerHeight;
+            const revealPoint = 150;
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                
+                if (elementTop < windowHeight - revealPoint) {
+                    element.classList.add('show');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', scrollReveal);
+        window.addEventListener('load', scrollReveal);
+
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
         });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Add pulse animation to founder image on hover
+        const founderImage = document.querySelector('.founder-image');
+        if (founderImage) {
+            founderImage.addEventListener('mouseenter', () => {
+                founderImage.style.animation = 'pulse 1.5s infinite';
+            });
+            
+            founderImage.addEventListener('mouseleave', () => {
+                founderImage.style.animation = '';
+            });
+        }
     </script>
 </body>
 </html>
