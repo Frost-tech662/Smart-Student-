@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Student - Past Papers</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Smart Student - Educational Resources</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
-        
+
         body {
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
             overflow-x: hidden;
         }
-        
-        /* Header Styles */
+
         header {
             display: flex;
             justify-content: space-between;
@@ -31,20 +30,20 @@
             z-index: 100;
             animation: fadeInDown 1s ease-out;
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
             cursor: pointer;
         }
-        
+
         .logo i {
             font-size: 2.5rem;
             color: #4a6bff;
             margin-right: 10px;
             animation: bounce 2s infinite;
         }
-        
+
         .logo h1 {
             font-size: 1.8rem;
             font-weight: 700;
@@ -54,8 +53,7 @@
             color: transparent;
             animation: colorShift 5s infinite alternate;
         }
-        
-        /* Hamburger Menu */
+
         .menu-btn {
             font-size: 1.8rem;
             color: #4a6bff;
@@ -63,11 +61,11 @@
             transition: transform 0.3s ease;
             z-index: 1000;
         }
-        
+
         .menu-btn:hover {
             transform: rotate(90deg);
         }
-        
+
         .menu {
             position: fixed;
             top: 0;
@@ -83,11 +81,11 @@
             transition: right 0.4s ease;
             z-index: 999;
         }
-        
+
         .menu.active {
             right: 0;
         }
-        
+
         .menu a {
             padding: 15px;
             margin: 10px 0;
@@ -97,98 +95,122 @@
             border-radius: 8px;
             transition: all 0.3s ease;
         }
-        
+
         .menu a:hover {
             background: #4a6bff;
             color: white;
             transform: translateX(-5px);
         }
-        
-        /* Main Content */
+
         .hero {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 60vh;
+            min-height: 40vh;
             text-align: center;
             padding: 0 5%;
             position: relative;
         }
-        
+
         .hero h2 {
-            font-size: 3rem;
-            margin-bottom: 40px;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
             background: linear-gradient(to right, #4a6bff, #a855f7);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             animation: fadeInUp 1s ease-out 0.3s both;
         }
-        
-        /* Exam Selection Cards */
-        .exam-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
+
+        .section-title {
+            font-size: 2rem;
+            margin: 40px 0 20px;
+            text-align: center;
+            background: linear-gradient(to right, #4a6bff, #a855f7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .resources-container {
             max-width: 1000px;
             margin: 0 auto;
+            padding: 0 5%;
             animation: fadeInUp 1s ease-out 0.6s both;
         }
-        
-        .exam-card {
+
+        .resource-list {
             background: white;
-            border-radius: 15px;
-            width: 300px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
+
+        .resource-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
             transition: all 0.3s ease;
             cursor: pointer;
+            border-bottom: 1px solid #eee;
+        }
+
+        .resource-item:last-child {
+            border-bottom: none;
+        }
+
+        .resource-item:hover {
+            background: rgba(74, 107, 255, 0.05);
+            transform: translateX(5px);
+        }
+
+        .resource-icon {
+            font-size: 1.5rem;
+            color: #4a6bff;
+            margin-right: 15px;
+            width: 40px;
             text-align: center;
         }
-        
-        .exam-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+
+        .resource-content {
+            flex: 1;
         }
-        
-        .exam-card i {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            color: #4a6bff;
-        }
-        
-        .exam-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+
+        .resource-title {
+            font-size: 1.1rem;
+            font-weight: 600;
             color: #333;
+            margin-bottom: 5px;
         }
-        
-        .exam-card p {
+
+        .resource-description {
             color: #666;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
         }
-        
-        .select-btn {
-            padding: 10px 25px;
+
+        .resource-link {
+            padding: 8px 15px;
             background: linear-gradient(to right, #4a6bff, #a855f7);
             color: white;
             border: none;
             border-radius: 50px;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
         }
-        
-        .select-btn:hover {
+
+        .resource-link:hover {
             transform: scale(1.05);
             box-shadow: 0 5px 15px rgba(74, 107, 255, 0.4);
         }
-        
-        /* Floating elements for animation */
+
         .floating {
             position: absolute;
             border-radius: 50%;
@@ -196,7 +218,7 @@
             animation: float 6s ease-in-out infinite;
             z-index: -1;
         }
-        
+
         .floating:nth-child(1) {
             width: 150px;
             height: 150px;
@@ -204,7 +226,7 @@
             left: 10%;
             animation-delay: 0s;
         }
-        
+
         .floating:nth-child(2) {
             width: 200px;
             height: 200px;
@@ -212,7 +234,7 @@
             right: 10%;
             animation-delay: 2s;
         }
-        
+
         .floating:nth-child(3) {
             width: 100px;
             height: 100px;
@@ -220,23 +242,23 @@
             left: 30%;
             animation-delay: 4s;
         }
-        
-        /* About Section */
+
         .about {
             padding: 80px 5%;
             background: white;
             border-radius: 30px 30px 0 0;
             box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.05);
             animation: fadeIn 1s ease-out 1.2s both;
+            margin-top: 50px;
         }
-        
+
         .about h3 {
             font-size: 2rem;
             margin-bottom: 20px;
             color: #333;
             text-align: center;
         }
-        
+
         .about p {
             font-size: 1.1rem;
             color: #555;
@@ -245,8 +267,7 @@
             line-height: 1.6;
             text-align: center;
         }
-        
-        /* Animations */
+
         @keyframes fadeInDown {
             from {
                 opacity: 0;
@@ -257,7 +278,7 @@
                 transform: translateY(0);
             }
         }
-        
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -268,7 +289,7 @@
                 transform: translateY(0);
             }
         }
-        
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -277,7 +298,7 @@
                 opacity: 1;
             }
         }
-        
+
         @keyframes float {
             0% {
                 transform: translateY(0) rotate(0deg);
@@ -289,7 +310,7 @@
                 transform: translateY(0) rotate(0deg);
             }
         }
-        
+
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
                 transform: translateY(0);
@@ -301,7 +322,7 @@
                 transform: translateY(-10px);
             }
         }
-        
+
         @keyframes colorShift {
             0% {
                 filter: hue-rotate(0deg);
@@ -310,106 +331,186 @@
                 filter: hue-rotate(20deg);
             }
         }
-        
-        /* Responsive */
+
         @media (max-width: 768px) {
             .hero h2 {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
             
-            .exam-container {
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .resource-item {
                 flex-direction: column;
-                align-items: center;
+                align-items: flex-start;
             }
             
-            .exam-card {
-                width: 100%;
-                max-width: 350px;
+            .resource-icon {
+                margin-bottom: 10px;
+                margin-right: 0;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Floating background elements -->
     <div class="floating"></div>
     <div class="floating"></div>
     <div class="floating"></div>
-    
-    <!-- Header with logo and hamburger menu -->
+
     <header>
         <div class="logo" onclick="window.location.href='index.html'">
-    <i class="fas fa-graduation-cap"></i>
-    <h1>Smart Student</h1>
-</div>
-        
+            <i class="fas fa-graduation-cap"></i>
+            <h1>Smart Student</h1>
+        </div>
+
         <div class="menu-btn" id="menuBtn">
             <i class="fas fa-bars"></i>
         </div>
-        
+
         <div class="menu" id="menu">
-    <a href="index.html">Home</a>
-    <a href="B-msce.html">MSCE Materials</a>
-    <a href="C-jce.html">JCE Materials</a>
-</div>
-            <a href="index.html#contact"></a>
+            <a href="index.html">Home</a>
+            <a href="About.html">About Us</a>
+            <a href="#past-papers">Past Papers</a>
+            <a href="#textbooks">Textbooks</a>
+            <a href="#pamphlets">Pamphlets</a>
         </div>
     </header>
-    
-    <!-- Main Hero Section -->
+
     <section class="hero">
-        <h2>Select Your Exam Level</h2>
-        
-        <div class="exam-container">
-            <div class="exam-card" onclick="window.location.href='B-msce.html'">
-                <i class="fas fa-university"></i>
-                <h3>MSCE Past Papers</h3>
-                <p>Access Malawi School Certificate of Education past examination papers from various years to help you prepare effectively.</p>
-                <button class="select-btn">Select MSCE</button>
+        <h2>Educational Resources</h2>
+        <p>Access all the materials you need for your academic success</p>
+    </section>
+
+    <div class="resources-container">
+        <h2 class="section-title" id="past-papers">Past Examination Papers</h2>
+        <div class="resource-list">
+            <div class="resource-item" onclick="window.location.href='B-msce.html'">
+                <div class="resource-icon">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div class="resource-content">
+                    <h3 class="resource-title">MSCE Past Papers</h3>
+                    <p class="resource-description">Malawi School Certificate of Education past examination papers from various years and subjects.</p>
+                </div>
+                <a href="B-msce.html" class="resource-link">View Papers</a>
             </div>
-            
-            <div class="exam-card" onclick="window.location.href='C-jce.html'">
-                <i class="fas fa-school"></i>
-                <h3>JCE Past Papers</h3>
-                <p>Junior Certificate Examination papers from previous years to help you understand the exam format and question patterns.</p>
-                <button class="select-btn">Select JCE</button>
+
+            <div class="resource-item" onclick="window.location.href='C-jce.html'">
+                <div class="resource-icon">
+                    <i class="fas fa-school"></i>
+                </div>
+                <div class="resource-content">
+                    <h3 class="resource-title">JCE Past Papers</h3>
+                    <p class="resource-description">Junior Certificate Examination papers to help you understand the format and question styles.</p>
+                </div>
+                <a href="C-jce.html" class="resource-link">View Papers</a>
             </div>
         </div>
-    </section>
-    
-    <!-- About Section -->
+
+        <h2 class="section-title" id="textbooks">Textbooks</h2>
+        <div class="resource-list">
+            <div class="resource-item" onclick="window.location.href='textbooks-math.html'">
+                <div class="resource-icon">
+                    <i class="fas fa-square-root-alt"></i>
+                </div>
+                <div class="resource-content">
+                    <h3 class="resource-title">Mathematics Textbooks</h3>
+                    <p class="resource-description">Comprehensive math textbooks covering all topics from basic to advanced levels.</p>
+                </div>
+                <a href="textbooks-math.html" class="resource-link">View Books</a>
+            </div>
+
+            <div class="resource-item" onclick="window.location.href='textbooks-science.html'">
+                <div class="resource-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="resource-content">
+                    <h3 class="resource-title">Science Textbooks</h3>
+                    <p class="resource-description">Physics, Chemistry, and Biology textbooks for both JCE and MSCE levels.</p>
+                </div>
+                <a href="textbooks-science.html" class="resource-link">View Books</a>
+            </div>
+
+            <div class="resource-item" onclick="window.location.href='textbooks-humanities.html'">
+                <div class="resource-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="resource-content">
+                    <h3 class="resource-title">Humanities Textbooks</h3>
+                    <p class="resource-description">History, Geography, Bible Knowledge, and other humanities subjects.</p>
+                </div>
+                <a href="textbooks-humanities.html" class="resource-link">View Books</a>
+            </div>
+        </div>
+
+        <h2 class="section-title" id="pamphlets">Pamphlets & Study Guides</h2>
+        <div class="resource-list">
+            <div class="resource-item" onclick="window.location.href='pamphlets-math.html'">
+                <div class="resource-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="resource-content">
+                    <h3 class="resource-title">Mathematics Pamphlets</h3>
+                    <p class="resource-description">Condensed study guides and formula sheets for quick revision.</p>
+                </div>
+                <a href="pamphlets-math.html" class="resource-link">View Guides</a>
+            </div>
+
+            <div class="resource-item" onclick="window.location.href='pamphlets-science.html'">
+                <div class="resource-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <div class="resource-content">
+                    <h3 class="resource-title">Science Pamphlets</h3>
+                    <p class="resource-description">Key concepts, diagrams, and summaries for Physics, Chemistry, and Biology.</p>
+                </div>
+                <a href="pamphlets-science.html" class="resource-link">View Guides</a>
+            </div>
+
+            <div class="resource-item" onclick="window.location.href='pamphlets-english.html'">
+                <div class="resource-icon">
+                    <i class="fas fa-language"></i>
+                </div>
+                <div class="resource-content">
+                    <h3 class="resource-title">English Study Guides</h3>
+                    <p class="resource-description">Grammar rules, essay writing tips, and literature summaries.</p>
+                </div>
+                <a href="pamphlets-english.html" class="resource-link">View Guides</a>
+            </div>
+        </div>
+    </div>
+
     <section class="about">
-        <h3>About Our Past Papers</h3>
-        <p>Our collection of past papers is carefully curated to help students prepare for their examinations. Practicing with past papers is one of the most effective ways to understand the exam format, question types, and time management.</p>
-        <p>All papers are organized by year and subject for easy access. Select your exam level above to begin exploring our resources.</p>
+        <h3>About Our Resources</h3>
+        <p>Our comprehensive collection of educational materials is designed to help students excel in their studies. From past examination papers to textbooks and study guides, we provide everything you need for academic success.</p>
+        <p>All resources are carefully organized by subject and level for easy access. Browse our collections above to find the materials that match your needs.</p>
     </section>
-    
+
     <script>
-        // Hamburger menu functionality
         const menuBtn = document.getElementById('menuBtn');
         const menu = document.getElementById('menu');
-        
+
         menuBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             menu.classList.toggle('active');
         });
-        
-        // Close menu when clicking anywhere else
+
         document.addEventListener('click', () => {
             menu.classList.remove('active');
         });
-        
-        // Prevent menu from closing when clicking inside it
+
         menu.addEventListener('click', (e) => {
             e.stopPropagation();
         });
-        
-        // Make entire exam card clickable
-        document.querySelectorAll('.exam-card').forEach(card => {
-            card.addEventListener('click', function(e) {
-                // Don't trigger if clicking the button (to avoid double events)
-                if (e.target.tagName !== 'BUTTON') {
-                    window.location.href = this.getAttribute('onclick').match(/'([^']+)'/)[1];
-                }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
     </script>
