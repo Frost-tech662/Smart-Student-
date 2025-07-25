@@ -210,6 +210,11 @@
         const paper = file.paper || "Paper";
         const size = file.size || "Unknown";
 
+        const fileIdMatch = file.url.match(/\/d\/(.*?)\//);
+        const fileId = fileIdMatch ? fileIdMatch[1] : '';
+        const viewerUrl = `viewer.html?file=https://drive.google.com/uc?export=view&id=${fileId}`;
+        const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+
         const wrapper = document.createElement('div');
         wrapper.className = 'paper-item';
         wrapper.setAttribute('data-subject', subject);
@@ -231,14 +236,14 @@
             <p><strong>Format:</strong> pdf</p>
             <p><strong>File Size:</strong> ${size}</p>
             <p><strong>Institution:</strong> Malawi National Examinations Board</p>
-            <a href="viewer.html?file=${file.url}" target="_blank" class="download-link">
+            <a href="#" class="download-link" data-url="${downloadUrl}">
               <i class="fas fa-download"></i> Download
             </a>
           </div>
         `;
 
         wrapper.querySelector('.click-to-open').addEventListener('click', () => {
-          window.open(`viewer.html?file=${file.url}`, '_blank');
+          window.open(viewerUrl, '_blank');
         });
 
         wrapper.querySelector('.expand-btn').addEventListener('click', (e) => {
@@ -247,6 +252,15 @@
             if (p !== wrapper) p.classList.remove('expanded');
           });
           wrapper.classList.toggle('expanded');
+        });
+
+        wrapper.querySelector('.download-link').addEventListener('click', (e) => {
+          e.preventDefault();
+          const url = e.currentTarget.getAttribute('data-url');
+          const confirmDownload = confirm("Do you want to download this paper?");
+          if (confirmDownload) {
+            window.open(url, '_blank');
+          }
         });
 
         papersGrid.appendChild(wrapper);
