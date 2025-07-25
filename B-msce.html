@@ -26,13 +26,26 @@
     .page-title { font-size: 2rem; margin-bottom: 20px; background: linear-gradient(to right, #4a6bff, #a855f7); -webkit-background-clip: text; color: transparent; text-align: center; }
     #searchInput { width: 100%; max-width: 500px; padding: 10px; border-radius: 8px; border: 1px solid #ccc; margin: 0 auto 20px; display: block; }
 
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .filters select {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
     .paper-item {
       border-bottom: 1px solid #ccc;
       padding: 15px 10px;
       background: white;
       border-radius: 8px;
       margin-bottom: 10px;
-      cursor: default;
       transition: background 0.3s ease;
     }
 
@@ -49,12 +62,20 @@
     .click-to-open {
       flex-grow: 1;
       cursor: pointer;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      padding-right: 10px;
     }
 
     .paper-title {
       font-weight: 600;
       font-size: 1rem;
       color: #333;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      display: block;
     }
 
     .paper-subject {
@@ -99,20 +120,6 @@
       padding: 20px;
       color: #666;
       font-size: 0.9rem;
-    }
-
-    .filters {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-
-    .filters select {
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
     }
   </style>
 </head>
@@ -199,7 +206,7 @@
       files.forEach(file => {
         const title = file.title.replace('.pdf', '');
         const subject = file.subject || "Unknown";
-        const year = file.year || "----";
+        const year = file.year && file.year.trim() !== "" ? file.year : "Unknown";
         const paper = file.paper || "Paper";
         const size = file.size || "Unknown";
 
@@ -211,7 +218,7 @@
         wrapper.innerHTML = `
           <div class="paper-header">
             <div class="click-to-open">
-              <span class="paper-title">${title}</span><br>
+              <span class="paper-title">${title}</span>
               <span class="paper-subject">${subject}</span>
             </div>
             <div class="expand-btn"><i class="fas fa-chevron-down"></i></div>
