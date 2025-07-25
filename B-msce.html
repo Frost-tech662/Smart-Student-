@@ -212,7 +212,7 @@
 
         const fileIdMatch = file.url.match(/\/d\/(.*?)\//);
         const fileId = fileIdMatch ? fileIdMatch[1] : '';
-        const viewerUrl = `viewer.html?file=https://drive.google.com/uc?export=view&id=${fileId}`;
+        const viewerUrl = `viewer.html?file=https://drive.google.com/uc?export=download&id=${fileId}`;
         const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
 
         const wrapper = document.createElement('div');
