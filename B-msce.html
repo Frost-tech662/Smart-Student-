@@ -203,6 +203,11 @@
 
     function renderFiles(files) {
       papersGrid.innerHTML = '';
+      if (files.length === 0) {
+        papersGrid.innerHTML = '<p style="text-align:center; color:#888;">No matching papers found.</p>';
+        return;
+      }
+
       files.forEach(file => {
         const title = file.title.replace('.pdf', '');
         const subject = file.subject || "Unknown";
@@ -212,7 +217,7 @@
 
         const fileIdMatch = file.url.match(/\/d\/(.*?)\//);
         const fileId = fileIdMatch ? fileIdMatch[1] : '';
-        const viewerUrl = `viewer.html?file=https://drive.google.com/uc?export=download&id=${fileId}`;
+        const viewerUrl = `https://docs.google.com/viewer?embedded=true&url=https://drive.google.com/uc?export=download&id=${fileId}`;
         const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
 
         const wrapper = document.createElement('div');
@@ -259,7 +264,12 @@
           const url = e.currentTarget.getAttribute('data-url');
           const confirmDownload = confirm("Do you want to download this paper?");
           if (confirmDownload) {
-            window.open(url, '_blank');
+            const a = document.createElement('a');
+            a.href = url;
+            a.setAttribute('download', '');
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
           }
         });
 
