@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Student - MSCE Past Papers</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    body { font-family: 'Poppins', sans-serif; background: #f7f9fb; margin: 0; padding: 0; }
+    header, footer { padding: 20px 5%; background: white; text-align: center; }
+    .container { padding: 20px 5%; }
+    .paper-item { background: white; border-radius: 8px; padding: 15px; margin-bottom: 10px; box-shadow: 0 0 5px rgba(0,0,0,0.05); cursor: pointer; transition: 0.2s ease; }
+    .paper-item:hover { background: #eef3ff; }
+    .paper-title { font-weight: 600; font-size: 1.1rem; color: #333; }
+    .paper-subject { font-size: 0.85rem; color: #2e7d32; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Smart Student - MSCE Past Papers</h1>
+  </header>
+
+  <div class="container">
+    <div class="papers-grid">
+      <p>Loading past papers...</p>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Smart Student. Built for learners in Malawi.
+  </footer>
+
+  <script>
+    const papersGrid = document.querySelector('.papers-grid');
+
+    fetch("https://script.google.com/macros/s/AKfycbxgLeuQXBRxEi6RPQjYKNozKcoo0SRs5-GHkPAZ2K_mfKtGLEYb7qKS5A8u06LElTZ6/exec")
+      .then(res => res.json())
+      .then(files => renderFiles(files))
+      .catch(err => {
+        papersGrid.innerHTML = '<p style="color:red;text-align:center;">Failed to load papers. Please try again later.</p>';
+        console.error("Fetch error:", err);
+      });
+
+    function renderFiles(files) {
+      papersGrid.innerHTML = '';
+      files.forEach(file => {
+        const title = file.title?.replace('.pdf', '') || 'Untitled';
+        const subject = file.subject || "Unknown";
+        const year = file.year || "Unknown";
+
+        const fileIdMatch = file.url?.match(/\/d\/(.*?)\//);
+        const fileId = fileIdMatch ? fileIdMatch[1] : null;
+
+        if (!fileId) return;
+
+        const viewerUrl = `viewer.html?fileId=${fileId}`;
+
+        const wrapper = document.createElement('div');
+        wrapper.className = 'paper-item';
+        wrapper.innerHTML = `
+          <div class="paper-title">${title}</div>
+          <div class="paper-subject">${subject} - ${year}</div>
+        `;
+        wrapper.addEventListener('click', () => {
+          window.open(viewerUrl, '_blank');
+        });
+
+        papersGrid.appendChild(wrapper);
+      });
+    }
+  </script>
+
+</body>
+</html>
