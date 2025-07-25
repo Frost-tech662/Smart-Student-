@@ -41,78 +41,26 @@
     }
 
     .paper-item {
-      border-bottom: 1px solid #ccc;
-      padding: 15px 10px;
       background: white;
       border-radius: 8px;
       margin-bottom: 10px;
+      padding: 15px;
+      cursor: pointer;
       transition: background 0.3s ease;
+      border: 1px solid #ddd;
     }
 
     .paper-item:hover {
       background: #eef3ff;
     }
 
-    .paper-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .click-to-open {
-      flex-grow: 1;
-      cursor: pointer;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      padding-right: 10px;
-    }
-
     .paper-title {
       font-weight: 600;
       font-size: 1rem;
       color: #333;
-      overflow: hidden;
       white-space: nowrap;
+      overflow: hidden;
       text-overflow: ellipsis;
-      display: block;
-    }
-
-    .paper-subject {
-      font-size: 0.85rem;
-      color: #2e7d32;
-      margin-top: 4px;
-    }
-
-    .expand-btn {
-      padding-left: 10px;
-      cursor: pointer;
-    }
-
-    .paper-details {
-      margin-top: 10px;
-      display: none;
-      font-size: 0.9rem;
-      color: #444;
-    }
-
-    .paper-item.expanded .paper-details {
-      display: block;
-    }
-
-    .download-link {
-      display: inline-block;
-      margin-top: 10px;
-      background: #4a6bff;
-      color: white;
-      padding: 8px 16px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .download-link:hover {
-      background: #3a54d0;
     }
 
     footer {
@@ -212,65 +160,18 @@
         const title = file.title.replace('.pdf', '');
         const subject = file.subject || "Unknown";
         const year = file.year && file.year.trim() !== "" ? file.year : "Unknown";
-        const paper = file.paper || "Paper";
-        const size = file.size || "Unknown";
 
         const fileIdMatch = file.url.match(/\/d\/(.*?)\//);
         const fileId = fileIdMatch ? fileIdMatch[1] : '';
-        const viewerUrl = `https://docs.google.com/viewer?embedded=true&url=https://drive.google.com/uc?export=download&id=${fileId}`;
-        const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
 
         const wrapper = document.createElement('div');
         wrapper.className = 'paper-item';
         wrapper.setAttribute('data-subject', subject);
         wrapper.setAttribute('data-year', year);
+        wrapper.innerHTML = `<div class="paper-title">${title}</div>`;
 
-        wrapper.innerHTML = `
-          <div class="paper-header">
-            <div class="click-to-open">
-              <span class="paper-title">${title}</span>
-              <span class="paper-subject">${subject}</span>
-            </div>
-            <div class="expand-btn"><i class="fas fa-chevron-down"></i></div>
-          </div>
-          <div class="paper-details">
-            <p><strong>Year:</strong> ${year}</p>
-            <p><strong>Subject:</strong> ${subject}</p>
-            <p><strong>Paper:</strong> ${paper}</p>
-            <p><strong>Level:</strong> MSCE</p>
-            <p><strong>Format:</strong> pdf</p>
-            <p><strong>File Size:</strong> ${size}</p>
-            <p><strong>Institution:</strong> Malawi National Examinations Board</p>
-            <a href="#" class="download-link" data-url="${downloadUrl}">
-              <i class="fas fa-download"></i> Download
-            </a>
-          </div>
-        `;
-
-        wrapper.querySelector('.click-to-open').addEventListener('click', () => {
-          window.open(viewerUrl, '_blank');
-        });
-
-        wrapper.querySelector('.expand-btn').addEventListener('click', (e) => {
-          e.stopPropagation();
-          document.querySelectorAll('.paper-item').forEach(p => {
-            if (p !== wrapper) p.classList.remove('expanded');
-          });
-          wrapper.classList.toggle('expanded');
-        });
-
-        wrapper.querySelector('.download-link').addEventListener('click', (e) => {
-          e.preventDefault();
-          const url = e.currentTarget.getAttribute('data-url');
-          const confirmDownload = confirm("Do you want to download this paper?");
-          if (confirmDownload) {
-            const a = document.createElement('a');
-            a.href = url;
-            a.setAttribute('download', '');
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-          }
+        wrapper.addEventListener('click', () => {
+          window.open(`viewer.html?fileId=${fileId}`, '_blank');
         });
 
         papersGrid.appendChild(wrapper);
