@@ -63,6 +63,57 @@
       text-overflow: ellipsis;
     }
 
+    .skeleton-item {
+      height: 60px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 30px;
+    }
+
+    .pagination button {
+      padding: 8px 14px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(to right, #4a6bff, #a855f7);
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .pagination button:hover {
+      transform: scale(1.05);
+    }
+
+    .pagination button.active {
+      background: linear-gradient(to right, #a855f7, #4a6bff);
+      box-shadow: 0 3px 8px rgba(74, 107, 255, 0.3);
+    }
+
+    .pagination button:disabled {
+      background: #ccc;
+      color: #555;
+      cursor: default;
+      box-shadow: none;
+    }
+
     footer {
       text-align: center;
       padding: 20px;
@@ -94,9 +145,8 @@
       <select id="subjectFilter"><option value="">All Subjects</option></select>
       <select id="yearFilter"><option value="">All Years</option></select>
     </div>
-    <div class="papers-grid">
-      <p style="text-align:center;">Loading past papers...</p>
-    </div>
+    <div class="papers-grid"></div>
+    <div class="pagination" id="pagination"></div>
   </div>
 
   <footer>
@@ -117,8 +167,22 @@
     const searchInput = document.getElementById('searchInput');
     const subjectFilter = document.getElementById('subjectFilter');
     const yearFilter = document.getElementById('yearFilter');
+    const pagination = document.getElementById('pagination');
 
     let allFiles = [];
+    let currentPage = 1;
+    const itemsPerPage = 20;
+
+    function showDummyLoading(count = 6) {
+      papersGrid.innerHTML = '';
+      for (let i = 0; i < count; i++) {
+        const skeleton = document.createElement('div');
+        skeleton.className = 'skeleton-item';
+        papersGrid.appendChild(skeleton);
+      }
+    }
+
+    showDummyLoading();
 
     fetch("https://script.google.com/macros/s/AKfycbxgLeuQXBRxEi6RPQjYKNozKcoo0SRs5-GHkPAZ2K_mfKtGLEYb7qKS5A8u06LElTZ6/exec")
       .then(res => res.json())
@@ -150,13 +214,19 @@
     }
 
     function renderFiles(files) {
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const paginatedFiles = files.slice(startIndex, startIndex + itemsPerPage);
+
       papersGrid.innerHTML = '';
-      if (files.length === 0) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (paginatedFiles.length === 0) {
         papersGrid.innerHTML = '<p style="text-align:center; color:#888;">No matching papers found.</p>';
+        pagination.innerHTML = '';
         return;
       }
 
-      files.forEach(file => {
+      paginatedFiles.forEach(file => {
         const title = file.title.replace('.pdf', '');
         const subject = file.subject || "Unknown";
         const year = file.year && file.year.trim() !== "" ? file.year : "Unknown";
@@ -176,9 +246,40 @@
 
         papersGrid.appendChild(wrapper);
       });
+
+      renderPaginationControls(files.length);
     }
 
-    function applyFilters() {
+    function renderPaginationControls(totalItems) {
+      const totalPages = Math.ceil(totalItems / itemsPerPage);
+      pagination.innerHTML = '';
+
+      if (totalPages <= 1) return;
+
+      const createButton = (label, page, isDisabled = false, isActive = false) => {
+        const btn = document.createElement('button');
+        btn.textContent = label;
+        if (isActive) btn.classList.add('active');
+        if (isDisabled) btn.disabled = true;
+        btn.addEventListener('click', () => {
+          currentPage = page;
+          applyFilters();
+        });
+        return btn;
+      };
+
+      pagination.appendChild(createButton('← Prev', currentPage - 1, currentPage === 1));
+
+      for (let i = 1; i <= totalPages; i++) {
+        pagination.appendChild(createButton(i, i, false, i === currentPage));
+      }
+
+      pagination.appendChild(createButton('Next →', currentPage + 1, currentPage === totalPages));
+    }
+
+    function applyFilters(resetPage = false) {
+      if (resetPage) currentPage = 1;
+
       const term = searchInput.value.toLowerCase();
       const selectedSubject = subjectFilter.value;
       const selectedYear = yearFilter.value;
@@ -193,9 +294,9 @@
       renderFiles(filtered);
     }
 
-    searchInput.addEventListener('input', applyFilters);
-    subjectFilter.addEventListener('change', applyFilters);
-    yearFilter.addEventListener('change', applyFilters);
+    searchInput.addEventListener('input', () => applyFilters(true));
+    subjectFilter.addEventListener('change', () => applyFilters(true));
+    yearFilter.addEventListener('change', () => applyFilters(true));
   </script>
 </body>
 </html>
