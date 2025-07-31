@@ -516,8 +516,8 @@
   <a href="A-pdfs.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back</a>
 
   <div class="container">
-    <h1 class="page-title">MSCE PAPERS</h1>
-    <input type="text" id="searchInput" placeholder="Search papers..." />
+    <h1 class="page-title">Books</h1>
+    <input type="text" id="searchInput" placeholder="Search Books..." />
     <div class="filters">
       <select id="subjectFilter"><option value="">All Subjects</option></select>
       <select id="yearFilter"><option value="">All Years</option></select>
@@ -689,7 +689,7 @@
         renderFiles(files);
       })
       .catch(err => {
-        papersGrid.innerHTML = '<p style="color:red;text-align:center;">Failed to load papers. Please try again later.</p>';
+        papersGrid.innerHTML = '<p style="color:red;text-align:center;">Failed to load books. Please try again later.</p>';
         console.error("Fetch error:", err);
       });
 
